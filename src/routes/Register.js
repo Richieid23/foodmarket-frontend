@@ -3,12 +3,12 @@ import { Link } from 'react-router-dom';
 
 const Register = ({ setAuth }) => {
     const [inputs, setInputs] = useState({
-        username: "",
+        name: "",
         email: "",
         password: ""
     })
 
-    const { username, email, password } = inputs;
+    const { name, email, password } = inputs;
 
     const onChange = (e) => {
         setInputs({...inputs, [e.target.name] : e.target.value});
@@ -17,7 +17,7 @@ const Register = ({ setAuth }) => {
     const onSubmitForm = async(e) => {
         e.preventDefault();
         try {
-            const body = { username, email, password };
+            const body = { name, email, password };
             const response = await fetch("http://localhost:5000/api/auth/register", {
                 method: "POST",
                 headers: {"Content-Type": "application/json"},
@@ -37,7 +37,7 @@ const Register = ({ setAuth }) => {
         <Fragment>
             <h1 className='text-center my-3'>Register</h1>
             <form onSubmit={onSubmitForm}>
-                <input value={username} onChange={e => onChange(e)} type="text" name='username' placeholder='username' className='form-control my-3' />
+                <input value={name} onChange={e => onChange(e)} type="text" name='name' placeholder='name' className='form-control my-3' />
                 <input value={email} onChange={e => onChange(e)} type="email" name='email' placeholder='email' className='form-control my-3' />
                 <input value={password} onChange={e => onChange(e)} type="password" name='password' placeholder='password' className='form-control my-3' />
                 <button className='btn btn-success btn-block'>Sign Up</button>

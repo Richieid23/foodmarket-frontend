@@ -32,41 +32,50 @@ const MenuList = () => {
     }
 
     return (
-        <Fragment>
-            <div className='list-group mt-3'>
-                <table className='table table-dark table-hover'>
-                    <thead>
-                        <tr className='bg-primary'>
-                        <th scope="col">Menu</th>
-                        <th scope="col">Nama Menu</th>
-                        <th scope="col">Deskripsi</th>
-                        <th scope="col">Harga</th>
-                        <th scope="col">Edit</th>
-                        <th scope="col">Delete</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {menus.map((menu) => {
-                            return (
-                                <tr key={menu.id}>
-                                    <th>{menu.type}</th>
-                                    <td>{menu.name}</td>
-                                    <td>{menu.description}</td>
-                                    <td>{menu.price}</td>
-                                    <td>
-                                        <MenuEdit menu={menu} />
-                                    </td>
-                                    <td>
-                                        <button className='btn btn-danger' onClick={() => deleteMenu(menu.id)}>Delete</button>
-                                    </td>
-                                </tr>
-                            );
-                        })}
-                    </tbody>
-                </table>
-            </div>
-        </Fragment>
-    )
+      <Fragment>
+        <div className="list-group mt-3">
+          <table className="table table-dark table-hover">
+            <thead>
+              <tr className="bg-primary">
+                <th scope="col">Menu</th>
+                <th scope="col">Nama Menu</th>
+                <th scope="col">Deskripsi</th>
+                <th scope="col">Bahan</th>
+                <th scope="col">Harga</th>
+                <th scope="col">Rating</th>
+                <th scope="col">Edit</th>
+                <th scope="col">Delete</th>
+              </tr>
+            </thead>
+            <tbody>
+              {menus.map((menu) => {
+                return (
+                  <tr key={menu.id}>
+                    <th>{menu.types}</th>
+                    <td>{menu.name}</td>
+                    <td>{menu.description}</td>
+                    <td>{menu.ingredients}</td>
+                    <td>{menu.price}</td>
+                    <td>{menu.rate}</td>
+                    <td>
+                      <MenuEdit menu={menu} />
+                    </td>
+                    <td>
+                      <button
+                        className="btn btn-danger"
+                        onClick={() => deleteMenu(menu.id)}
+                      >
+                        Delete
+                      </button>
+                    </td>
+                  </tr>
+                );
+              })}
+            </tbody>
+          </table>
+        </div>
+      </Fragment>
+    );
 }
 
 export default MenuList;

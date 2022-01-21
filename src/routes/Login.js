@@ -1,4 +1,5 @@
 import React, { Fragment, useState } from 'react';
+import { Link } from 'react-router-dom';
 
 const Login = ({ setAuth }) => {
     const [inputs, setInputs] = useState({
@@ -25,7 +26,7 @@ const Login = ({ setAuth }) => {
             const parseRes = await response.json()
 
             if(parseRes.status === 'success'){
-                if (parseRes.data.user.role === 'ADMIN') {
+                if (parseRes.data.user.roles === 'ADMIN') {
                     localStorage.setItem("token", parseRes.token);
                     setAuth(true);
                 } else {
@@ -40,15 +41,30 @@ const Login = ({ setAuth }) => {
     }
 
     return (
-        <Fragment>
-            <h1 className='text-center my-3'>Login</h1>
-            <form onSubmit={onSubmitForm}>
-                <input value={email} onChange={e => onChange(e)} type="email" name='email' placeholder='email' className='form-control my-3' />
-                <input value={password} onChange={e => onChange(e)} type="password" name='password' placeholder='password' className='form-control my-3' />
-                <button className='btn btn-success btn-block'>Log In</button>
-            </form>
-        </Fragment>
-    )
+      <Fragment>
+        <h1 className="text-center my-3">Login</h1>
+        <form onSubmit={onSubmitForm}>
+          <input
+            value={email}
+            onChange={(e) => onChange(e)}
+            type="email"
+            name="email"
+            placeholder="email"
+            className="form-control my-3"
+          />
+          <input
+            value={password}
+            onChange={(e) => onChange(e)}
+            type="password"
+            name="password"
+            placeholder="password"
+            className="form-control my-3"
+          />
+          <button className="btn btn-success btn-block">Log In</button>
+        </form>
+        <Link to="/register">Register</Link>
+      </Fragment>
+    );
 }
 
 export default Login;
